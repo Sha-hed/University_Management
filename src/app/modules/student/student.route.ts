@@ -7,8 +7,8 @@ const router = express.Router();
 
 // router.post('/create-student', StudentControllers.createStudent);
 router.get('/', StudentControllers.getAllStudentFromDB);
-router.get('/:studentId', StudentControllers.getSingleStudentData);
-router.delete('/:studentId',StudentControllers.deletedStudent)
-router.patch('/:studentId',validateRequest(StudentValidationSchemas.updateStudentValidationSchema),StudentControllers.updateStudent)
+router.get('/:id', StudentControllers.getSingleStudentData);
+router.delete('/:id',StudentControllers.deletedStudent)
+router.patch('/:id',validateRequest(StudentValidationSchemas.updateStudentValidationSchema),StudentControllers.updateStudent)
 
 export const StudentRoutes = router;
