@@ -58,8 +58,8 @@ const getAllStudentFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(vo
     });
 }));
 const getSingleStudentData = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.getSingleStudentData(studentId);
+    const { id } = req.params;
+    const result = yield student_service_1.StudentServices.getSingleStudentData(id);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -68,8 +68,8 @@ const getSingleStudentData = (0, catchAsync_1.default)((req, res) => __awaiter(v
     });
 }));
 const deletedStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.deleteStudentFromDB(studentId);
+    const { id } = req.params;
+    const result = yield student_service_1.StudentServices.deleteStudentFromDB(id);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -79,9 +79,9 @@ const deletedStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
 }));
 const updateStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('Update Student e asi ami');
-    const { studentId } = req.params;
+    const { id } = req.params;
     const { student } = req.body;
-    const result = yield student_service_1.StudentServices.updateStudentIntoDB(studentId, student);
+    const result = yield student_service_1.StudentServices.updateStudentIntoDB(id, student);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
