@@ -9,7 +9,7 @@ const getSingleAdmin = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Admin is retrieved succesfully',
+    message: 'Admin is retrieved successfully',
     data: result,
   });
 });
@@ -20,7 +20,7 @@ const getAllAdmins = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Admins are retrieved succesfully',
+    message: 'Admins are retrieved successfully',
     data: result,
   });
 });
@@ -33,7 +33,7 @@ const updateAdmin = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Admin is updated succesfully',
+    message: 'Admin is updated successfully',
     data: result,
   });
 });
@@ -45,7 +45,7 @@ const deleteAdmin = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: 'Admin is deleted succesfully',
+    message: 'Admin is deleted successfully',
     data: result,
   });
 });

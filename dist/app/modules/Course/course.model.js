@@ -4,11 +4,12 @@ exports.Course = exports.courseSchema = void 0;
 const mongoose_1 = require("mongoose");
 const preRequisiteCoursesSchema = new mongoose_1.Schema({
     course: {
-        type: mongoose_1.Schema.Types.ObjectId
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Course',
     },
     isDeleted: {
         type: Boolean,
-        default: false
+        default: false,
     },
 });
 exports.courseSchema = new mongoose_1.Schema({
@@ -33,6 +34,10 @@ exports.courseSchema = new mongoose_1.Schema({
         trim: true,
         required: true,
     },
-    preRequisiteCourses: [preRequisiteCoursesSchema]
+    preRequisiteCourses: [preRequisiteCoursesSchema],
+    isDeleted: {
+        type: Boolean,
+        default: false
+    },
 });
 exports.Course = (0, mongoose_1.model)('Course', exports.courseSchema);

@@ -13,10 +13,8 @@ const createCourse = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-
-
 const getAllCourses = catchAsync(async (req, res) => {
-  const result = await CourseServices.getAllCoursesFromDB();
+  const result = await CourseServices.getAllCoursesFromDB(req.query);
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -24,7 +22,6 @@ const getAllCourses = catchAsync(async (req, res) => {
     data: result,
   });
 });
-
 
 const getSingleCourse = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -37,7 +34,6 @@ const getSingleCourse = catchAsync(async (req, res) => {
   });
 });
 
-
 const deleteCourse = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await CourseServices.deleteCourseFromDB(id);
@@ -49,23 +45,35 @@ const deleteCourse = catchAsync(async (req, res) => {
   });
 });
 
-// const updateAcademicFaculty = catchAsync(async (req, res) => {
-//   const { id } = req.params;
-//   const result = await AcademicFacultyServices.updateAcademicFacultyFromDB(
-//     facultyId,
-//     req.body,
-//   );
-//   sendResponse(res, {
-//     statusCode: 200,
-//     success: true,
-//     message: 'Academic Faculty is Updated Successfully!!',
-//     data: result,
-//   });
-// });
+
+const assignFacultiesWithCourse = catchAsync(async (req, res) => {
+  const { courseId } = req.params;
+  const { faculties } = req.body;
+  const result = await CourseServices.assignFacultiesWithCourseIntoDB(courseId,faculties);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Faculty Assigned Successfully!!",
+    data: result,
+  });
+});
+
+const updateCourse = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await CourseServices.updateCourseIntoDB(id, req.body)
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Course is Updated Successfully!!',
+    data: result,
+  });
+});
 
 export const CourseControllers = {
   createCourse,
   getAllCourses,
   getSingleCourse,
-  deleteCourse
+  deleteCourse,
+  updateCourse,
+  assignFacultiesWithCourse
 };

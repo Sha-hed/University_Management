@@ -8,28 +8,59 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CourseServices = void 0;
+const QueryBuilder_1 = __importDefault(require("../../builder/QueryBuilder"));
+const course_constant_1 = require("./course.constant");
 const course_model_1 = require("./course.model");
 const createCourseIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield course_model_1.Course.create(payload);
     return result;
 });
-const getAllCoursesFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield course_model_1.Course.find();
+const getAllCoursesFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const courseQuery = new QueryBuilder_1.default(course_model_1.Course.find().populate('preRequisiteCourses.course'), query)
+        .search(course_constant_1.CourseSearchableFields)
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const result = yield courseQuery.modelQuery;
     return result;
 });
 const getSingleCourseFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield course_model_1.Course.findById(id);
+    const result = yield course_model_1.Course.findById(id).populate('preRequisiteCourses.course');
     return result;
 });
 const deleteCourseFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield course_model_1.Course.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
     return result;
 });
+const updateCourseIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { preRequisiteCourses } = payload, basicUpdatedInfo = __rest(payload, ["preRequisiteCourses"]);
+    console.log(preRequisiteCourses);
+    // Step -01
+    const updatedBasicCourseInfo = yield course_model_1.Course.findByIdAndUpdate(id, basicUpdatedInfo, { new: true, runValidators: true });
+    // Step- 02
+    return updatedBasicCourseInfo;
+});
 exports.CourseServices = {
     createCourseIntoDB,
     getAllCoursesFromDB,
     getSingleCourseFromDB,
     deleteCourseFromDB,
+    updateCourseIntoDB,
 };

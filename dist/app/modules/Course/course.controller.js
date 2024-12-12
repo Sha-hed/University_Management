@@ -26,7 +26,7 @@ const createCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     });
 }));
 const getAllCourses = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield course_service_1.CourseServices.getAllCoursesFromDB();
+    const result = yield course_service_1.CourseServices.getAllCoursesFromDB(req.query);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
@@ -54,22 +54,20 @@ const deleteCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
-// const updateAcademicFaculty = catchAsync(async (req, res) => {
-//   const { id } = req.params;
-//   const result = await AcademicFacultyServices.updateAcademicFacultyFromDB(
-//     facultyId,
-//     req.body,
-//   );
-//   sendResponse(res, {
-//     statusCode: 200,
-//     success: true,
-//     message: 'Academic Faculty is Updated Successfully!!',
-//     data: result,
-//   });
-// });
+const updateCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield course_service_1.CourseServices.updateCourseIntoDB(id, req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Course is Updated Successfully!!',
+        data: result,
+    });
+}));
 exports.CourseControllers = {
     createCourse,
     getAllCourses,
     getSingleCourse,
-    deleteCourse
+    deleteCourse,
+    updateCourse,
 };
