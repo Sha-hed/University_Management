@@ -8,7 +8,7 @@ const getSingleFaculty = catchAsync(async (req, res) => {
   const result = await FacultyServices.getSingleFacultyFromDB( id );
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: 200,
     success: true,
     message: 'Faculty is retrieved successfully',
     data: result,
@@ -19,7 +19,7 @@ const getAllFaculties = catchAsync(async (req, res) => {
   const result = await FacultyServices.getAllFacultiesFromDB(req.query);
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: 200,
     success: true,
     message: 'Faculties are retrieved successfully',
     data: result,
@@ -32,7 +32,7 @@ const updateFaculty = catchAsync(async (req, res) => {
   const result = await FacultyServices.updateFacultyIntoDB( id , faculty);
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: 200,
     success: true,
     message: 'Faculty is updated successfully',
     data: result,
@@ -44,7 +44,7 @@ const deleteFaculty = catchAsync(async (req, res) => {
   const result = await FacultyServices.deleteFacultyFromDB(id);
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: 200,
     success: true,
     message: 'Faculty is deleted successfully',
     data: result,

@@ -22,7 +22,7 @@ exports.userSchema = new mongoose_1.Schema({
     needsPasswordChange: { type: Boolean, default: true },
     role: {
         type: String,
-        enum: ['admin', 'student', 'faculty '],
+        enum: ['admin', 'student', 'faculty'],
     },
     status: {
         type: String,

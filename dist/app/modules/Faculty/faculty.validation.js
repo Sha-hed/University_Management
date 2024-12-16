@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.studentValidations = exports.updateFacultyValidationSchema = exports.createFacultyValidationSchema = void 0;
+exports.FacultyValidations = exports.updateFacultyValidationSchema = exports.createFacultyValidationSchema = void 0;
 const zod_1 = require("zod");
 const faculty_constant_1 = require("./faculty.constant");
 const createUserNameValidationSchema = zod_1.z.object({
@@ -25,7 +25,7 @@ exports.createFacultyValidationSchema = zod_1.z.object({
             email: zod_1.z.string().email(),
             contactNo: zod_1.z.string(),
             emergencyContactNo: zod_1.z.string(),
-            bloogGroup: zod_1.z.enum([...faculty_constant_1.BloodGroup]),
+            bloodGroup: zod_1.z.enum([...faculty_constant_1.BloodGroup]),
             presentAddress: zod_1.z.string(),
             permanentAddress: zod_1.z.string(),
             academicDepartment: zod_1.z.string(),
@@ -48,7 +48,7 @@ exports.updateFacultyValidationSchema = zod_1.z.object({
             email: zod_1.z.string().email().optional(),
             contactNo: zod_1.z.string().optional(),
             emergencyContactNo: zod_1.z.string().optional(),
-            bloogGroup: zod_1.z.enum([...faculty_constant_1.BloodGroup]).optional(),
+            bloodGroup: zod_1.z.enum([...faculty_constant_1.BloodGroup]).optional(),
             presentAddress: zod_1.z.string().optional(),
             permanentAddress: zod_1.z.string().optional(),
             profileImg: zod_1.z.string().optional(),
@@ -56,7 +56,7 @@ exports.updateFacultyValidationSchema = zod_1.z.object({
         }),
     }),
 });
-exports.studentValidations = {
+exports.FacultyValidations = {
     createFacultyValidationSchema: exports.createFacultyValidationSchema,
     updateFacultyValidationSchema: exports.updateFacultyValidationSchema,
 };

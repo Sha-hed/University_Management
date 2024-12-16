@@ -20,7 +20,7 @@ const getSingleFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     const { id } = req.params;
     const result = yield faculty_service_1.FacultyServices.getSingleFacultyFromDB(id);
     (0, sendResponse_1.default)(res, {
-        statusCode: 400,
+        statusCode: 200,
         success: true,
         message: 'Faculty is retrieved successfully',
         data: result,
@@ -29,7 +29,7 @@ const getSingleFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 
 const getAllFaculties = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield faculty_service_1.FacultyServices.getAllFacultiesFromDB(req.query);
     (0, sendResponse_1.default)(res, {
-        statusCode: 400,
+        statusCode: 200,
         success: true,
         message: 'Faculties are retrieved successfully',
         data: result,
@@ -40,7 +40,7 @@ const updateFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     const { faculty } = req.body;
     const result = yield faculty_service_1.FacultyServices.updateFacultyIntoDB(id, faculty);
     (0, sendResponse_1.default)(res, {
-        statusCode: 400,
+        statusCode: 200,
         success: true,
         message: 'Faculty is updated successfully',
         data: result,
@@ -50,7 +50,7 @@ const deleteFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     const { id } = req.params;
     const result = yield faculty_service_1.FacultyServices.deleteFacultyFromDB(id);
     (0, sendResponse_1.default)(res, {
-        statusCode: 400,
+        statusCode: 200,
         success: true,
         message: 'Faculty is deleted successfully',
         data: result,

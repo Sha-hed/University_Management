@@ -22,7 +22,7 @@ const getSingleAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: 'Admin is retrieved succesfully',
+        message: 'Admin is retrieved successfully',
         data: result,
     });
 }));
@@ -31,7 +31,7 @@ const getAllAdmins = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: 'Admins are retrieved succesfully',
+        message: 'Admins are retrieved successfully',
         data: result,
     });
 }));
@@ -42,7 +42,7 @@ const updateAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: 'Admin is updated succesfully',
+        message: 'Admin is updated successfully',
         data: result,
     });
 }));
@@ -52,7 +52,7 @@ const deleteAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: 'Admin is deleted succesfully',
+        message: 'Admin is deleted successfully',
         data: result,
     });
 }));

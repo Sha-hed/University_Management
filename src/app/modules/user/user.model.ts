@@ -9,7 +9,7 @@ export const userSchema = new Schema<TUser>({
   needsPasswordChange: { type: Boolean, default: true },
   role: {
     type: String,
-    enum: ['admin', 'student', 'faculty '],
+    enum: ['admin', 'student', 'faculty'],
   },
   status: {
     type: String,

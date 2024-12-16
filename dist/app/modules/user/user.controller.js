@@ -25,10 +25,25 @@ const createStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
         message: 'Student Created Successfully!!',
         data: result,
     });
-    res.status(200).json({
+}));
+const createAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { password, admin: adminData } = req.body;
+    const result = yield user_service_1.UserServices.createAdminIntoDB(password, adminData);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
         success: true,
-        message: 'Student Inserted To DB Successfully',
+        message: 'Admin is Created Successfully!!',
         data: result,
     });
 }));
-exports.UserControllers = { createStudent };
+const createFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { password, faculty: facultyData } = req.body;
+    const result = yield user_service_1.UserServices.createFacultyIntoDB(password, facultyData);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Faculty is Created Successfully Man!!',
+        data: result,
+    });
+}));
+exports.UserControllers = { createStudent, createAdmin, createFaculty };
