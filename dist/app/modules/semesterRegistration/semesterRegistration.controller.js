@@ -17,6 +17,7 @@ const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const semesterRegistration_service_1 = require("./semesterRegistration.service");
 const createSemesterRegistration = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Ekane Hit korse");
     const result = yield semesterRegistration_service_1.SemesterRegistrationService.createSemesterRegistrationIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,

@@ -5,6 +5,7 @@ import { SemesterRegistrationService } from './semesterRegistration.service';
 
 const createSemesterRegistration = catchAsync(
   async (req: Request, res: Response) => {
+    console.log("Ekane Hit korse");
     const result =
       await SemesterRegistrationService.createSemesterRegistrationIntoDB(
         req.body,
