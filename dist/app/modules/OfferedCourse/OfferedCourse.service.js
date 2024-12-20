@@ -22,7 +22,6 @@ const academicFaculty_model_1 = require("../academicFaculty/academicFaculty.mode
 const semesterRegistration_model_1 = require("../semesterRegistration/semesterRegistration.model");
 const OfferedCourse_model_1 = require("./OfferedCourse.model");
 const OfferedCourse_utils_1 = require("./OfferedCourse.utils");
-// import { hasTimeConflict } from './OfferedCourse.utils';
 const createOfferedCourseIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { semesterRegistration, academicFaculty, academicDepartment, course, section, faculty, days, startTime, endTime, } = payload;
     /**
@@ -162,8 +161,8 @@ const deleteOfferedCourseFromDB = (id) => __awaiter(void 0, void 0, void 0, func
     if (!isOfferedCourseExists) {
         throw new AppError_1.default(404, 'Offered Course not found');
     }
-    const semesterRegistation = isOfferedCourseExists.semesterRegistration;
-    const semesterRegistrationStatus = yield semesterRegistration_model_1.SemesterRegistration.findById(semesterRegistation).select('status');
+    const semesterRegistration = isOfferedCourseExists.semesterRegistration;
+    const semesterRegistrationStatus = yield semesterRegistration_model_1.SemesterRegistration.findById(semesterRegistration).select('status');
     if ((semesterRegistrationStatus === null || semesterRegistrationStatus === void 0 ? void 0 : semesterRegistrationStatus.status) !== 'UPCOMING') {
         throw new AppError_1.default(400, `Offered course can not update ! because the semester ${semesterRegistrationStatus}`);
     }

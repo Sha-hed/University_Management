@@ -8,8 +8,9 @@ const express_1 = __importDefault(require("express"));
 const academicDepartment_controller_1 = require("./academicDepartment.controller");
 const validateRequest_1 = __importDefault(require("../../middleware/validateRequest"));
 const academicDepartment_validation_1 = require("./academicDepartment.validation");
+const auth_1 = __importDefault(require("../../middleware/auth"));
 const router = express_1.default.Router();
-router.get('/', academicDepartment_controller_1.AcademicDepartmentControllers.getAllAcademicDepartments);
+router.get('/', (0, auth_1.default)(), academicDepartment_controller_1.AcademicDepartmentControllers.getAllAcademicDepartments);
 router.post('/create-academic-department', 
 // validateRequest(AcademicDepartmentValidation.academicDepartmentValidationSchema),
 academicDepartment_controller_1.AcademicDepartmentControllers.createAcademicDepartment);

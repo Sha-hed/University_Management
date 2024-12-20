@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = exports.userSchema = void 0;
+/* eslint-disable @typescript-eslint/no-this-alias */
 const mongoose_1 = require("mongoose");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const config_1 = __importDefault(require("../../config"));
@@ -48,20 +49,37 @@ exports.userSchema.post('save', function (doc, next) {
     });
 });
 // Query Middleware
-exports.userSchema.pre('find', function (next) {
-    this.find({ isDeleted: { $ne: true } });
-    // console.log(this);
-    next();
-});
-exports.userSchema.pre('findOne', function (next) {
-    this.findOne({ isDeleted: { $ne: true } });
-    // console.log(this);
-    next();
-});
-exports.userSchema.pre('aggregate', function (next) {
-    // this.findOne({isDeleted :{ $ne: true }})
-    this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
-    // console.log(this.pipeline());
-    next();
-});
+// userSchema.pre('find', function (next) {
+//   this.find({ isDeleted: { $ne: true } });
+//   // console.log(this);
+//   next();
+// });
+// userSchema.pre('findOne', function (next) {
+//   this.findOne({ isDeleted: { $ne: true } });
+//   // console.log(this);
+//   next();
+// });
+// userSchema.pre('aggregate', function (next) {
+//   // this.findOne({isDeleted :{ $ne: true }})
+//   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+//   // console.log(this.pipeline());
+//   next();
+// });
+//static Method
+exports.userSchema.statics.isUserExistsByCustomId = function (id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield exports.User.findOne({ id });
+    });
+};
+exports.userSchema.statics.isUserDeleted = function (id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const result = yield exports.User.findOne({ id });
+        return result === null || result === void 0 ? void 0 : result.isDeleted;
+    });
+};
+exports.userSchema.statics.isPasswordMatched = function (plainTextPassword, hashedPassword) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield bcrypt_1.default.compare(plainTextPassword, hashedPassword);
+    });
+};
 exports.User = (0, mongoose_1.model)('user', exports.userSchema);
